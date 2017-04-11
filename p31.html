@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+//ユーザ定義のコンストラクタ
+    var CustomConstructor = function() {
+        this.foo = 'bar';
+    };
+//CustomConstructorのインスタンスを生成
+  var instanceOfCustomObject = new CustomConstructor();
+  console.log(instanceOfCustomObject instanceof CustomConstructor);
+
+  console.log(new Array('foo') instanceof Array);
+
+//===========================================
+var myArray = new Object();
+myArray.prop = 'test';
+console.log(myArray);
+console.log(myArray.prop === myArray);
+
+
+
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+  //オブジェクトチェーンを生成
+    var object1 = {
+      object1_1:{
+        object1_1_1:{foo:'bar'},
+        object1_1_2:{}
+      },
+      object1_2:{
+        object1_2_1:{},
+        object1_2_2:{},
+      }
+    };
+
+    console.log(object1.object1_1.object1_1_1.foo);
+
+//下のやつ
+
+var myArray = [[[]]];
+console.log(myArray);
+
+var myFunction = function() {
+  //空
+  var myFunction = function() {
+    //空
+    var myFunction = function() {
+      //空
+    };
+  };
+};
+
+var foo = [{
+  foo:[{
+    bar:{
+      say:function(){
+        return 'hi';
+      }
+    }
+  }]
+}];
+
+console.log(foo[0].foo[0].bar.say());
+
+
+
+//p38の内容
+
+var cody = new Object();
+
+
+cody.living = true;
+cody.age = 33;
+cody.gender = 'male';
+cody.getGender = function() {
+  return cody.getGender;
+}
+
+console.log(
+  cody.living,
+  cody.age,
+  cody.gender,
+  cody.getGender()
+);
+
+console.log(typeof cody);
+
+
+
+
+
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+
+  var addConstructor = new Function ('x','y','return x + y');
+
+  function addStatement(x,y) {
+    return x + y;
+  }
+
+  var addExpresstion = function(x,y) {
+  return x + y;
+};
+
+var addNamedExpression = function addNamedExpression(x,y) {
+  return x + y;
+};
+
+console.log(addConstructor(2,2),addStatement(2,2),addExpresstion(2,2),addNamedExpression(2,2));
+
+
+
+
+  </script>
+
+</body>
+</html>
