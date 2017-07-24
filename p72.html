@@ -5,60 +5,85 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
+  <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/3.18.1/build/cssreset/cssreset-min.css">
   <script  src="https://code.jquery.com/jquery-3.1.1.min.js"  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="  crossorigin="anonymous"></script>
 </head>
+<style>
+canvas{
+   width:100%;
+   height:100%;
+}
+
+</style>
 <body>
 
-<div id="stop3"></div>
-
+<canvas id="mycanvas">Canvasに対応したブラウザを使って下さい</canvas>
   <script>
+  (function() {
+    'use strict'
+    var canvas
+    var ctx;
+    var Ball;
 
-// function() {
-//   console.log('hi');
-// };
+    canvas = document.getElementById('mycanvas');
+    if(!canvas || !canvas.getContext)return false;
+    ctx = canvas.getContext('2d');
 
-// var sayHi = function(f) {
-//   f();
-// }
-//
-// sayHi(function() {
-//   console.log('hi');
-// });
+    function rand(min,max) {
+      return min + Math.floor(Math.random() * (max - min + 1));
+    }
 
-// var sayWord = function() {
-//   console.log('word 2 yo mo!');
-// }();
+    Ball = function(x,y,r) {
+      this.x = x;
+      this.y = y;
+      this.r = r;
+      this.vx = rand(-5, 100);
+      this.vy = rand(-5, 100);
+      this.color = 'hsla('+ rand(50,100)+',' + rand(40,80)+'%,' + rand(50,60)+'%,'+ Math.random()+')';
+      this.draw = function() {
+        ctx.beginPath();
+        ctx.arc(this.x,this.y,this.r,0,Math.PI*2);
+        ctx.fillStyle = this.color;
+        ctx.closePath();
+        ctx.fill();
+      };
+      this.move = function() {
+        var colors = ['red','blue','green','purple','yellow']
+        if (this.x + this.r > canvas.width || this.x - this.r <0) {
+          this.vx *= -1;
+          this.color = colors[Math.floor(Math.random()*5)];
+        }
+        if (this.y + this.r > canvas.height || this.y - this.r <0) {
+          this.vy *= -1;
+          this.color = colors[Math.floor(Math.random()*5)];
+        }
+        this.x += this.vx;
+        this.y += this.vy;
+      }
+    };
 
-// (function(msg) {
-// console.log(msg);
-// })('よろしくね');
-//
-// (function(msg) {
-//   console.log(msg);
-// }('よろしくね！'));
-//
-// !function sayHi(msg) {
-//   console.log(msg);
-// }('hi');
-//
-// var foo = function() {
-//   var bar = function() {
-//     var goo = function() {
-//       console.log(this);
-//     }()
-//   }
-// }
-var runNum = 3;
-var stopButton = new Object();
-for (var i = 1; i <= runNum; i++) {
-  stopButton['stopButton' + i] = $("#stop"+runNum).get();
-}
-stopButton.stopButton1
+    var ball = new Ball(rand(100,400),rand(100,100),rand(10,50));
+    ball.draw();
+    console.log(Ball);
 
-// alert(stopButton.AA1);
+    function update() {
+     ctx.fillStyle = '#ecf0f1';
+     ctx.fillRect(0, 0, canvas.width, canvas.height);
+     ball.draw();
+     ball.move();
+     setTimeout(function() {
+       update();
+     }, 30);
+   }
+
+    update();
 
 
+    window.addEventListener('click', function() {
+      alert();
+    });
 
+  })();
 
 
 
